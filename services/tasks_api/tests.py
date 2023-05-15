@@ -16,6 +16,6 @@ def test_health_check(client: TestClient):
     WHEN health check endpoint is called with GET method
     THEN respond with status 200 and body OK message
     """
-    response = client.get("/health-check")
+    response = client.get("/api/health-check/")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {"message": "ok"}
