@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tasks_api"
+version = "0.1.0"
+description = ""
+authors = ["Raqib Hayder <1992290+raqib-hayder@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.0.0"
+black = "^23.3.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+bandit = "^1.7.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
