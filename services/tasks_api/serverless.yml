@@ -1,0 +1,36 @@
+service: tasks-api
+
+frameworkVersion: '3' # serverless framework version
+useDotenv: true       # load .env file
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'development'}
+  logRetentionInDays: 30
+  environment:
+    APP_ENVIRONMENT: ${self:provider.stage}
+
+functions:
+  API:
+    handler: main.handle  # main.py -> handle()
+    timeout: 10
+    memorySize: 512
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+          cors:
+            origin: ${env:ALLOWED_ORIGINS}
+            maxAge: 60
+
+custom:
+  pythonRequirements:
+    usePoetry: true
+    noDeploy:
+      - boto3
+      - botocore
+
+plugins:
+  - serverless-python-requirements
